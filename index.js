@@ -1,8 +1,15 @@
 import express from 'express';
 const app = express();
+
 import pg from "pg";
 const { Pool } = pg;
 
+import cors from "cors";
+const {cors} = cors;
+
+app.use(cors({
+    origin: '*'
+}));
 
 const connectionString = "postgres://llgkghku:kphPG35kI-fFenIueMDaPtgr1fmSr-Gd@hattie.db.elephantsql.com:5432/llgkghku";
 
