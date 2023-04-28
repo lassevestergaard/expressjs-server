@@ -5,7 +5,6 @@ import pg from "pg";
 const { Pool } = pg;
 
 import cors from "cors";
-const {cors} = cors;
 
 app.use(cors({
     origin: '*'
