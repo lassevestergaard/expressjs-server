@@ -1,13 +1,26 @@
 import express from 'express';
 const app = express();
+const Pool = require('pg').Pool;
 
-app.get('/', (req, res) => {
-    res.send('Choo Choo! Welcome to your Express app 🚅');
+const connectionString = "postgres://llgkghku:kphPG35kI-fFenIueMDaPtgr1fmSr-Gd@hattie.db.elephantsql.com:5432/llgkghku";
+
+const pool = new Pool({
+  connectionString
 })
 
-app.get("/json", (req, res) => {
-    res.json({"Choo Choo": "Welcome to your Express app 🚅"});
-})
+
+app.get('/findStudentById', (request, response) => {
+  pool.query('SELECT id, fornavn, efternavn, fag, karakter FROM studerende where id=' + request.query.id + ';', (error, results) => {
+    if (error)
+      response.status(500).json(error);
+    else
+      if(results.length === undefined)
+        response.status(200).json(results.rows);
+      else
+        response.status(200).json(results[results.length-1].rows);
+  })
+});
+
 
 const port = process.env.PORT || 3000;
 
