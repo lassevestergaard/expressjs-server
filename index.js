@@ -1,6 +1,8 @@
 import express from 'express';
 const app = express();
-const Pool = import('pg').Pool;
+import pg from "pg";
+const { Pool } = pg;
+
 
 const connectionString = "postgres://llgkghku:kphPG35kI-fFenIueMDaPtgr1fmSr-Gd@hattie.db.elephantsql.com:5432/llgkghku";
 
